@@ -552,7 +552,6 @@
       submitBtn.disabled = false;
       showSuccess();
     } catch (error) {
-      console.error('Submission error:', error);
       loadingOverlay.classList.add('hidden');
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
