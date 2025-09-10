@@ -42,15 +42,15 @@
       required: true,
       max: 3,
       options: [
-        'Club reporting and documentation',
-        'Membership retention',
-        'Public image & branding',
-        'Conflict within district team or clubs',
+        'Club Reporting & Documentation',
+        'Membership Extention & Retention',
+        'Public Image & Branding',
+        'Conflict within District Team or Clubs',
         'Lack of support from Rotary leadership',
-        'Project execution or scale',
-        'Fundraising and sponsorship',
-        'Time management and delegation',
-        'Lack of proper training before assuming role'
+        'Project Execution or Scale',
+        'Fundraising & Sponsorship',
+        'Time Management & Delegation',
+        'Lack of proper Training before assuming role'
       ],
       hint: 'Select up to 3 challenges that were most significant'
     },
@@ -61,12 +61,12 @@
       required: true,
       max: 3,
       options: [
-        'Team building & delegation',
-        'Budgeting & finance',
-        'Reporting and compliance',
-        'Membership & club health tracking',
-        'Communication with clubs',
-        'Branding and outreach'
+        'Team Building & Delegation',
+        'Budgeting & Finance',
+        'Reporting & Compliance',
+        'Membership & Club Health Tracking',
+        'Communication with Clubs',
+        'Branding & Outreach'
       ],
       hint: 'Select up to 3 areas where DRRs need the most preparation'
     },
@@ -77,16 +77,16 @@
       required: true,
       max: 3,
       options: [
-        'Conflict resolution & people management',
-        'Building your core team',
-        'How to build & run district-wide projects',
-        'Fundraising & CSR connects',
-        'Data handling & reporting',
-        'Effective Rotary-Rotaract synergy',
-        'Membership growth & club health',
-        'Digital branding tools',
+        'Conflict Resolution & People Management',
+        'Building your Core Team',
+        'How to Build & Run District-wide Projects',
+        'Fundraising & CSR Connects',
+        'Data Handling & Reporting',
+        'Effective Rotary-Rotaract Synergy',
+        'Membership Growth & Club Health',
+        'Digital Branding Tools',
         'Planning RYLAs, Zonal Meets, District Events, Conferences',
-        'How to handover effectively to your DRRE'
+        'How to Handover Effectively to your DRRE'
       ],
       hint: 'Select up to 3 areas that would benefit most from focused learning'
     },
@@ -97,11 +97,11 @@
       required: true,
       max: 3,
       options: [
-        'Workshops (interactive, hands-on)',
-        'Panel discussions with leaders',
-        'Peer-led experience sharing',
-        'Case studies / Success & failure stories',
-        'Zone/region-wise breakout groups'
+        'Workshops (Interactive, Hands-On)',
+        'Panel Discussions with Leaders',
+        'Peer-Led Experience Sharing',
+        'Case Studies / Success & Failure Stories',
+        'Zone/Region-wise Breakout Groups'
       ],
       hint: 'Select up to 3 session formats you find most effective'
     },
@@ -112,11 +112,11 @@
       required: true,
       max: 3,
       options: [
-        'Practical tools and templates',
-        'Real case studies from other DRRs',
-        'Interactive & activity-based learning',
-        'Speaker-led expert sessions',
-        'Networking & collaboration time'
+        'Practical Tools & Templates',
+        'Real Case Studies from other DRRs',
+        'Interactive & Activity-based Learning',
+        'Speaker-led Expert Sessions',
+        'Networking & Collaboration Time'
       ],
       hint: 'Select up to 3 learning experiences that would be most valuable'
     },
@@ -134,7 +134,7 @@
       title: 'How many previous RZIs have you attended?',
       type: 'radio',
       required: true,
-      options: ['This will be my first','1','2','3 or more'],
+      options: ['RZI 2026 Chennai will be my first','1','2','3 or more'],
       hint: 'Select the option that best describes your RZI experience'
     },
     {
