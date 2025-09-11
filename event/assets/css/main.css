@@ -558,6 +558,10 @@ body::before {
   background: var(--color-dark-surface);
   position: relative;
 }
+/* Team Section reuses speakers styling */
+.team {
+  padding: 100px 0;
+}
 
 .speakers::before {
   content: '';
