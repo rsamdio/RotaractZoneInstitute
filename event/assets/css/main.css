@@ -617,7 +617,6 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 48px;
   margin: 0 auto;
   transition: all var(--t-normal);
 }
@@ -625,6 +624,13 @@ body::before {
 .speaker-card:hover .speaker-placeholder {
   border-color: var(--color-primary);
   transform: scale(1.05);
+}
+
+.speaker-placeholder__img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  filter: brightness(1.1);
 }
 
 .speaker-card__name {
