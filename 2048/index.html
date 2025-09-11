@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2048 Game | Rotaract Zone Institute</title>
+  <meta name="description" content="Play 2048 - the addictive number puzzle game. Combine tiles to reach 2048!" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#1e3a8a" />
+  <meta name="color-scheme" content="dark light" />
+  
+  <!-- Canonical and Sharing -->
+  <link rel="canonical" href="https://rotaractinstitute.com/2048/" />
+  <meta property="og:url" content="https://rotaractinstitute.com/2048/" />
+  <meta property="og:title" content="2048 Game | Rotaract Zone Institute" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="Play 2048 - the addictive number puzzle game. Combine tiles to reach 2048!" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2048 Game | Rotaract Zone Institute" />
+  <meta name="twitter:description" content="Play 2048 - the addictive number puzzle game. Combine tiles to reach 2048!" />
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="../survey/assets/images/favicon.png" />
+  <link rel="apple-touch-icon" href="../survey/assets/images/favicon.png" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5S0H17XYPJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5S0H17XYPJ');
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <main id="main" class="game-container" tabindex="-1" role="main">
+    <!-- Header -->
+    <header class="game-header">
+      <div class="game-header__content">
+        <div class="game-header__logo">
+          <img src="../survey/assets/images/rzilogo.webp" alt="RZI Logo" class="game-logo" />
+        </div>
+        <div class="game-header__title">
+          <h1 class="game-title">2048</h1>
+          <p class="game-subtitle">Join the numbers to get to <strong>2048!</strong></p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Game Stats -->
+    <section class="game-stats" aria-label="Game Statistics">
+      <div class="stats-container">
+        <div class="stat-item">
+          <div class="stat-label">Score</div>
+          <div class="stat-value" id="currentScore">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Best</div>
+          <div class="stat-value" id="bestScore">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Moves</div>
+          <div class="stat-value" id="moveCount">0</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Game Controls -->
+    <section class="game-controls" aria-label="Game Controls">
+      <div class="controls-container">
+        <button class="btn btn--primary" id="newGameBtn" type="button">
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          New Game
+        </button>
+        <button class="btn btn--secondary" id="undoBtn" type="button" disabled>
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/>
+          </svg>
+          Undo
+        </button>
+        <button class="btn btn--secondary" id="hintBtn" type="button">
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+          </svg>
+          Hint
+        </button>
+      </div>
+    </section>
+
+    <!-- Game Board -->
+    <section class="game-board-section" aria-label="Game Board">
+      <div class="game-board-container">
+        <div class="game-board" id="gameBoard" role="grid" aria-label="2048 Game Board">
+          <!-- Game tiles will be dynamically generated here -->
+        </div>
+        <div class="game-overlay hidden" id="gameOverlay">
+          <div class="game-overlay__content">
+            <h2 class="game-overlay__title" id="overlayTitle">Game Over!</h2>
+            <p class="game-overlay__message" id="overlayMessage">Try again to reach 2048!</p>
+            <div class="game-overlay__actions">
+              <button class="btn btn--cta" id="restartBtn" type="button">Play Again</button>
+              <button class="btn btn--secondary" id="continueBtn" type="button" style="display: none;">Continue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Game Instructions -->
+    <section class="game-instructions" aria-label="How to Play">
+      <div class="instructions-container">
+        <h3 class="instructions-title">How to Play</h3>
+        <div class="instructions-content">
+          <div class="instruction-item">
+            <div class="instruction-icon">🎯</div>
+            <div class="instruction-text">
+              <strong>Goal:</strong> Combine numbered tiles to reach 2048!
+            </div>
+          </div>
+          <div class="instruction-item">
+            <div class="instruction-icon">⌨️</div>
+            <div class="instruction-text">
+              <strong>Controls:</strong> Use arrow keys or swipe to move tiles
+            </div>
+          </div>
+          <div class="instruction-item">
+            <div class="instruction-icon">🔗</div>
+            <div class="instruction-text">
+              <strong>Merge:</strong> Tiles with the same number merge into one
+            </div>
+          </div>
+          <div class="instruction-item">
+            <div class="instruction-icon">🎮</div>
+            <div class="instruction-text">
+              <strong>Strategy:</strong> Keep your highest tile in a corner
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="game-footer">
+      <div class="footer-content">
+        <p class="footer-text">
+          Made with ❤️ for <strong>Rotaract Zone Institute 2026 Chennai</strong>
+        </p>
+        <div class="footer-links">
+          <a href="../" class="footer-link">Back to RZI</a>
+          <a href="../survey/" class="footer-link">Take Survey</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Toast Notifications -->
+  <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="assets/js/game.js" defer></script>
+</body>
+</html>
