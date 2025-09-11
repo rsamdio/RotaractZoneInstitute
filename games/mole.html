@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Whack‑a‑Mole</title>
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .hole{height:110px;background:#0b1224;border-radius:12px;position:relative;overflow:hidden}
+    .mole{position:absolute;left:50%;bottom:-100%;transform:translateX(-50%);transition:bottom .15s; font-size:42px}
+    .up{bottom:18px}
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="hud">
+      <div>Score: <span id="score">0</span> • Time: <span id="time">30</span>s</div>
+      <button class="btn" id="start">Start</button>
+    </div>
+    <div class="board">
+      <div id="grid" class="grid"></div>
+    </div>
+  </main>
+  <script>
+    const grid=document.getElementById('grid');
+    const scoreEl=document.getElementById('score');
+    const timeEl=document.getElementById('time');
+    let score=0, time=30, interval, moleTimer, holes=[];
+    function build(){
+      grid.innerHTML=''; holes=[];
+      for(let i=0;i<9;i++){ const d=document.createElement('div'); d.className='hole'; d.addEventListener('click',()=>hit(d)); const m=document.createElement('div'); m.className='mole'; m.textContent='🐹'; d.appendChild(m); grid.appendChild(d); holes.push({d,m}); }
+    }
+    function start(){
+      clearInterval(interval); clearInterval(moleTimer); score=0; time=30; scoreEl.textContent=score; timeEl.textContent=time;
+      interval=setInterval(()=>{ time--; timeEl.textContent=time; if(time<=0){ clearInterval(interval); clearInterval(moleTimer); holes.forEach(h=>h.m.classList.remove('up')); } },1000);
+      moleTimer=setInterval(pop,700);
+    }
+    function pop(){ holes.forEach(h=>h.m.classList.remove('up')); const h=holes[Math.floor(Math.random()*holes.length)]; h.m.classList.add('up'); setTimeout(()=>h.m.classList.remove('up'),500); }
+    function hit(h){ if(h.querySelector('.mole').classList.contains('up')){ score++; scoreEl.textContent=score; h.querySelector('.mole').classList.remove('up'); } }
+    document.getElementById('start').onclick=start; build();
+  </script>
+</body>
+</html>
+
+
