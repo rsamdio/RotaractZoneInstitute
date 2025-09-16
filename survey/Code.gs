@@ -12,15 +12,15 @@ function doPost(e) {
       sheet.appendRow([
         "Timestamp",
         "Your Name",
-        "Your current role in Rotaract",
+        "Your Role in Rotaract",
         "Your District Number",
-        "What were your top 3 challenges in your term?",
+        "What aree the top 3 challenges DRRs are facing in during their term?",
         "Which area do you feel DRRs are least prepared for at the start of their term?",
         "Which of the following areas need focused learning sessions at RZI?",
         "Preferred session format at RZI",
         "What kind of learning experience would you value most at RZI?",
         "Would you find value in a 'Problem Solving Booth' at RZI where experienced leaders guide on specific issues?",
-        "How many previous RZIs have you attended?",
+        "How many RZIs have you attended in the past?",
         "Would you be willing to be a panelist/speaker at RZI if invited?",
         "Do you have additional feedback or suggestions for improving the RZI experience?"
       ]);
@@ -33,9 +33,11 @@ function doPost(e) {
 
     // Multi-select fields
     const challenges = joinMulti(e.parameters.challenges);
+    const leastPrepared = joinMulti(e.parameters.least_prepared);
     const trainingNeeds = joinMulti(e.parameters.training_needs);
     const sessionFormat = joinMulti(e.parameters.session_format);
     const learningExperience = joinMulti(e.parameters.learning_experience);
+    const problemSolvingBooth = joinMulti(e.parameters.problem_solving_booth);
 
     // Create a new row with the form data
     const newRow = [
@@ -44,11 +46,11 @@ function doPost(e) {
       data.role || '',
       data.district_number || '',
       challenges,
-      data.least_prepared || '',
+      leastPrepared,
       trainingNeeds,
       sessionFormat,
       learningExperience,
-      data.problem_solving_booth || '',
+      problemSolvingBooth,
       data.previous_rzis || '',
       data.willing_to_speak || '',
       data.feedback || ''

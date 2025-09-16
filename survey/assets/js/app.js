@@ -1,7 +1,7 @@
 /* RZI Survey App - Dynamic Renderer with Progress, Storage and Submit */
 (function() {
   const CONFIG = {
-    scriptURL: 'https://script.google.com/macros/s/AKfycby0beZjcCoCzxCJfRUrVRitqhrFrjGXwnVhnmUMnGxQa1nMfrtNO3bCkKchDpQvKI3g/exec'
+    scriptURL: 'https://script.google.com/macros/s/AKfycbx6oO_jHg_WXf1Xm04Nq4sO20Uxo8oP-r_cwcXDcFWSp-QwOiEA05aryLj3P0T304g/exec'
   };
 
   const QUESTIONS = [
@@ -21,11 +21,11 @@
     },
     {
       id: 'role',
-      title: 'Your current role in Rotaract',
+      title: 'Your Role in Rotaract',
       type: 'radio',
       required: true,
       options: ['Past DRR', 'Immediate Past DRR', 'DRR', 'DRR Elect', 'DRR Nominee', 'Other'],
-      hint: 'Select your current role.'
+      hint: 'Select the option that best describes your current role.'
     },
     {
       id: 'district_number',
@@ -37,10 +37,11 @@
     },
     {
       id: 'challenges',
-      title: 'What were your top 3 challenges in your term?',
+      title: 'What aree the top 3 challenges DRRs are facing in during their term?',
       type: 'checkbox',
       required: true,
       max: 3,
+      otherText: true,
       options: [
         'Club Reporting & Documentation',
         'Membership Extention & Retention',
@@ -60,6 +61,7 @@
       type: 'checkbox',
       required: true,
       max: 3,
+      otherText: true,
       options: [
         'Team Building & Delegation',
         'Budgeting & Finance',
@@ -76,6 +78,7 @@
       type: 'checkbox',
       required: true,
       max: 3,
+      otherText: true,
       options: [
         'Conflict Resolution & People Management',
         'Building your Core Team',
@@ -96,6 +99,7 @@
       type: 'checkbox',
       required: true,
       max: 3,
+      otherText: true,
       options: [
         'Workshops (Interactive, Hands-On)',
         'Panel Discussions with Leaders',
@@ -111,6 +115,7 @@
       type: 'checkbox',
       required: true,
       max: 3,
+      otherText: true,
       options: [
         'Practical Tools & Templates',
         'Real Case Studies from other DRRs',
@@ -126,16 +131,17 @@
       type: 'checkbox',
       required: true,
       max: 3,
+      otherText: true,
       options: ['Yes, this would be highly valuable', 'Yes, but only for specific, complex issues', 'Maybe, depending on who is at the booth', 'No, I\'d prefer to network with peers'],
       hint: 'Select up to 3 responses that best reflect your opinion'
     },
     {
       id: 'previous_rzis',
-      title: 'How many previous RZIs have you attended?',
+      title: 'How many RZIs have you attended in the past?',
       type: 'radio',
       required: true,
       options: ['RZI 2026 Chennai will be my first','1','2','3 or more'],
-      hint: 'Select the option that best describes your RZI experience'
+      hint: 'Slect the option that best describes your RZI participation'
     },
     {
       id: 'willing_to_speak',
@@ -444,6 +450,9 @@
       optionsWrap.append(select);
     } else if (q.type === 'checkbox') {
       const selected = Array.isArray(current) ? new Set(current) : new Set();
+      // Determine if there is an existing custom (other) value persisted
+      const hasOption = new Set((q.options || []));
+      let currentOtherValue = Array.from(selected).find(v => !hasOption.has(v));
       q.options.forEach((opt, i) => {
         const id = `${q.id}_${i}`;
         const onChange = () => {
@@ -470,6 +479,101 @@
           )
         );
       });
+
+      // Render an "Other (please specify)" option with an inline text input when enabled
+      if (q.otherText) {
+        const otherId = `${q.id}_other`;
+        const otherCheckbox = el('input', { class: 'option__input', type: 'checkbox', id: otherId, name: q.id });
+        const otherLabel = el('label', { class: 'option__label', for: otherId }, 'Other (please specify)');
+        const otherInput = el('input', {
+          class: 'text-input',
+          type: 'text',
+          id: `${q.id}_other_input`,
+          placeholder: 'Type your answer…',
+          value: currentOtherValue || '',
+          oninput: () => {
+            const newVal = otherInput.value.trim();
+            // Remove previous other value if present
+            if (currentOtherValue && selected.has(currentOtherValue)) {
+              selected.delete(currentOtherValue);
+            }
+            // Add new value if present and within limit
+            if (newVal) {
+              const sizeWithoutOther = selected.size;
+              if (q.max && sizeWithoutOther >= q.max) {
+                // Revert and warn
+                otherInput.value = currentOtherValue || '';
+                showToast('warning', 'Selection Limit', `Please select up to ${q.max} options.`);
+              } else {
+                selected.add(newVal);
+                currentOtherValue = newVal;
+                otherCheckbox.checked = true;
+              }
+            } else {
+              currentOtherValue = '';
+              otherCheckbox.checked = false;
+              otherInputWrap.style.display = 'none';
+            }
+            state.answers[q.id] = Array.from(selected);
+            saveToStorage();
+            updateProgress();
+            renderNav();
+          }
+        });
+
+        // Wrap input for show/hide control
+        const otherInputWrap = el('div', {}, otherInput);
+        if (!currentOtherValue) {
+          otherInputWrap.style.display = 'none';
+        }
+
+        // Initialize checkbox state based on existing other value
+        if (currentOtherValue) {
+          otherCheckbox.checked = true;
+          otherInputWrap.style.display = 'block';
+        }
+
+        otherCheckbox.onchange = () => {
+          if (!otherCheckbox.checked) {
+            // Unchecked: remove custom value
+            if (currentOtherValue && selected.has(currentOtherValue)) {
+              selected.delete(currentOtherValue);
+            }
+            currentOtherValue = '';
+            otherInput.value = '';
+            otherInputWrap.style.display = 'none';
+          } else {
+            // Checked: if there is text, try to add; otherwise focus input
+            const newVal = otherInput.value.trim();
+            if (newVal) {
+              if (q.max && selected.size >= q.max) {
+                otherCheckbox.checked = false;
+                showToast('warning', 'Selection Limit', `Please select up to ${q.max} options.`);
+              } else {
+                selected.add(newVal);
+                currentOtherValue = newVal;
+              }
+            } else {
+              // Prompt user to type
+              otherInputWrap.style.display = 'block';
+              otherInput.focus();
+            }
+          }
+          state.answers[q.id] = Array.from(selected);
+          saveToStorage();
+          updateProgress();
+          renderNav();
+        };
+
+        // Group the other checkbox/label and input
+        const otherGroup = el('div', { class: 'option' },
+          otherCheckbox,
+          otherLabel,
+          // Place input below for clarity
+          otherInputWrap
+        );
+        optionsWrap.append(otherGroup);
+      }
     }
 
     rootEl.append(header, optionsWrap);
@@ -504,6 +608,15 @@
       showToast('error', 'Required Question', 'Please answer the required question to continue.');
       return false;
     }
+    // Additional validation for checkbox questions with Other text option
+    if (q.type === 'checkbox' && q.otherText) {
+      const otherCheckbox = document.getElementById(`${q.id}_other`);
+      const otherInput = document.getElementById(`${q.id}_other_input`);
+      if (otherCheckbox && otherInput && otherCheckbox.checked && otherInput.value.trim() === '') {
+        showToast('error', 'Specify Other', "You selected 'Other'. Please specify your response.");
+        return false;
+      }
+    }
     return true;
   }
 
@@ -521,6 +634,16 @@
         goTo(i);
         showToast('error', 'Incomplete Survey', 'Please answer all required questions before submitting.');
         return;
+      }
+      // Enforce 'Other' text filled when selected on any checkbox question with otherText enabled
+      if (q.type === 'checkbox' && q.otherText) {
+        const otherCheckbox = document.getElementById(`${q.id}_other`);
+        const otherInput = document.getElementById(`${q.id}_other_input`);
+        if (otherCheckbox && otherInput && otherCheckbox.checked && otherInput.value.trim() === '') {
+          goTo(i);
+          showToast('error', 'Specify Other', "You selected 'Other'. Please specify your response.");
+          return;
+        }
       }
     }
 
