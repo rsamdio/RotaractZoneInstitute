@@ -128,9 +128,8 @@
     {
       id: 'problem_solving_booth',
       title: 'Would you find value in a \'Problem Solving Booth\' at RZI where experienced leaders guide on specific issues?',
-      type: 'checkbox',
+      type: 'radio',
       required: true,
-      max: 3,
       otherText: true,
       options: ['Yes, this would be highly valuable', 'Yes, but only for specific, complex issues', 'Maybe, depending on who is at the booth', 'No, I\'d prefer to network with peers'],
       hint: 'Select up to 3 responses that best reflect your opinion'
@@ -409,11 +408,11 @@
         [QUESTIONS.find(q => q.id === 'role').title, state.answers.role || '-'],
         [QUESTIONS.find(q => q.id === 'district_number').title, state.answers.district_number || '-'],
         [QUESTIONS.find(q => q.id === 'challenges').title, Array.isArray(state.answers.challenges) ? state.answers.challenges.join(', ') : '-'],
-        [QUESTIONS.find(q => q.id === 'least_prepared').title, state.answers.least_prepared || '-'],
+        [QUESTIONS.find(q => q.id === 'least_prepared').title, Array.isArray(state.answers.least_prepared) ? state.answers.least_prepared.join(', ') : (state.answers.least_prepared || '-')],
         [QUESTIONS.find(q => q.id === 'training_needs').title, Array.isArray(state.answers.training_needs) ? state.answers.training_needs.join(', ') : '-'],
         [QUESTIONS.find(q => q.id === 'session_format').title, Array.isArray(state.answers.session_format) ? state.answers.session_format.join(', ') : '-'],
         [QUESTIONS.find(q => q.id === 'learning_experience').title, Array.isArray(state.answers.learning_experience) ? state.answers.learning_experience.join(', ') : '-'],
-        [QUESTIONS.find(q => q.id === 'problem_solving_booth').title, state.answers.problem_solving_booth || '-'],
+        [QUESTIONS.find(q => q.id === 'problem_solving_booth').title, Array.isArray(state.answers.problem_solving_booth) ? state.answers.problem_solving_booth.join(', ') : (state.answers.problem_solving_booth || '-')],
         [QUESTIONS.find(q => q.id === 'previous_rzis').title, state.answers.previous_rzis || '-'],
         [QUESTIONS.find(q => q.id === 'willing_to_speak').title, state.answers.willing_to_speak || '-'],
         [QUESTIONS.find(q => q.id === 'feedback').title, state.answers.feedback || '-']
