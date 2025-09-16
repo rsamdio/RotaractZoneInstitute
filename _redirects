@@ -1,2 +1,2 @@
 # Redirect default Netlify subdomain to primary domain
-https://rotaractinstitute.netlify.app/* https:/rotaractinstitute.com/:splat 301!
+https://rotaractinstitute.netlify.app/* https://rotaractinstitute.com/:splat 301!
