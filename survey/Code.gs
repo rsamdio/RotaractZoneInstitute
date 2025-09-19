@@ -14,7 +14,7 @@ function doPost(e) {
         "Your Name",
         "Your Role in Rotaract",
         "Your District Number",
-        "What aree the top 3 challenges DRRs are facing in during their term?",
+        "What are the top 3 challenges DRRs are facing in during their term?",
         "Which area do you feel DRRs are least prepared for at the start of their term?",
         "Which of the following areas need focused learning sessions at RZI?",
         "Preferred session format at RZI",

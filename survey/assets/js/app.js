@@ -37,7 +37,7 @@
     },
     {
       id: 'challenges',
-      title: 'What aree the top 3 challenges DRRs are facing in during their term?',
+      title: 'What are the top 3 challenges DRRs are facing in during their term?',
       type: 'checkbox',
       required: true,
       max: 3,
