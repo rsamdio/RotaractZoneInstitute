@@ -132,7 +132,7 @@
       required: true,
       otherText: true,
       options: ['Yes, this would be highly valuable', 'Yes, but only for specific, complex issues', 'Maybe, depending on who is at the booth', 'No, I\'d prefer to network with peers'],
-      hint: 'Select up to 3 responses that best reflect your opinion'
+      hint: 'Select the option that best reflects your opinion'
     },
     {
       id: 'previous_rzis',
@@ -140,7 +140,7 @@
       type: 'radio',
       required: true,
       options: ['RZI 2026 Chennai will be my first','1','2','3 or more'],
-      hint: 'Slect the option that best describes your RZI participation'
+      hint: 'Select the option that best describes your RZI participation'
     },
     {
       id: 'willing_to_speak',
