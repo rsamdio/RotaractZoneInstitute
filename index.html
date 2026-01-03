@@ -534,7 +534,7 @@ animation-play-state: paused;
 
         <!-- Bottom CTA -->
         <div class="text-center fade-up stagger-2">
-          <a href="#past-events" data-scroll-to="past-events" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-slate-300 text-sm font-medium text-slate-900 hover:bg-slate-900 hover:text-white transition-all duration-300">
+          <a href="moments.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-slate-300 text-sm font-medium text-slate-900 hover:bg-slate-900 hover:text-white transition-all duration-300">
             Explore Past Events
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>
@@ -1572,7 +1572,7 @@ animation-play-state: paused;
                 </a>
               </li>
               <li>
-                <a href="#past-events" data-scroll-to="past-events" class="hover:text-brand-sky hover:underline transition-colors decoration-brand-sky/50 underline-offset-4">
+                <a href="moments.html" class="hover:text-brand-sky hover:underline transition-colors decoration-brand-sky/50 underline-offset-4">
                   Past Events
                 </a>
               </li>
@@ -2401,12 +2401,39 @@ animation-play-state: paused;
         }
       });
 
+      // Handle query parameter scrolling (from external pages like moments.html)
+      function handleQueryScroll() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const scrollTarget = urlParams.get('scroll');
+        
+        if (scrollTarget) {
+          // Remove the query parameter from URL without reloading
+          const newUrl = window.location.pathname;
+          window.history.replaceState({}, '', newUrl);
+          
+          // Wait for page to be fully loaded, then scroll
+          setTimeout(() => {
+            const targetElement = document.getElementById(scrollTarget);
+            if (targetElement) {
+              const navHeight = 80;
+              const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+              
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
+            }
+          }, 100);
+        }
+      }
+
       // Initialize all components after DOM is ready
       function initAll() {
         initDOMCache();
         initScheduleTabs();
         initLightboxControls();
         initModalHandlers(); // Initialize modal close handlers after DOMCache is ready
+        handleQueryScroll(); // Handle query parameter scrolling
       }
 
       if (document.readyState === 'loading') {
