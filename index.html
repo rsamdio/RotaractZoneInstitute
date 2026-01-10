@@ -216,11 +216,9 @@ animation-play-state: paused;
 
     <!-- 1️⃣ HERO SECTION -->
     <header class="relative min-h-screen flex items-center overflow-hidden">
-      <!-- Background Video -->
+      <!-- Background Image -->
       <div class="absolute inset-0 w-full h-full">
-        <video autoplay="" loop="" muted="" playsinline="" preload="metadata" poster="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&amp;w=1600" class="w-full h-full object-cover">
-          <source src="https://videos.pexels.com/video-files/853800/853800-hd_1920_1080_25fps.mp4" type="video/mp4">
-        </video>
+        <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1600" alt="Hero background" class="w-full h-full object-cover" loading="eager" decoding="async">
         <!-- Dark Navy Overlay -->
         <div class="absolute inset-0 bg-[#0B1121]/75"></div>
         <div class="absolute inset-0 bg-gradient-to-r from-[#0B1121] via-[#0B1121]/80 to-transparent"></div>
@@ -259,6 +257,12 @@ animation-play-state: paused;
             district leaders for immersive learning, collaboration, and
             leadership transformation.
           </p>
+
+          <!-- Hosted By -->
+          <div class="mb-6 flex flex-col items-start gap-2">
+            <span class="text-xs text-brand-textLight/70 font-medium uppercase tracking-wider">Hosted by:</span>
+            <img src="images/3224rsalookup.webp" alt="Host organizations" class="h-8 md:h-10 object-contain" loading="eager" decoding="async">
+          </div>
 
           <!-- Meta Details -->
           <div class="flex flex-wrap gap-4 sm:gap-6 mb-10">
@@ -2154,12 +2158,12 @@ animation-play-state: paused;
 
       // --- GALLERY LIGHTBOX LOGIC ---
       const galleryImages = [
-        { src: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1200", caption: "Mentorship in Action" },
-        { src: "https://images.unsplash.com/photo-1544161513-0179fe746f36?q=80&w=1200", caption: "Keynote Insights" },
-        { src: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1200", caption: "Networking & Growth" },
-        { src: "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?q=80&w=1200", caption: "Workshops" },
-        { src: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1200", caption: "Panel Discussions" },
-        { src: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=1200", caption: "Audience Engagement" }
+        { src: "images/Pune2024/1.webp", caption: "Mentorship in Action" },
+        { src: "images/Pune2024/5.webp", caption: "Keynote Insights" },
+        { src: "images/Pune2024/3.webp", caption: "Networking & Growth" },
+        { src: "images/Pune2024/16.webp", caption: "Workshops" },
+        { src: "images/Pune2024/13.webp", caption: "Panel Discussions" },
+        { src: "images/Pune2024/2.webp", caption: "Audience Engagement" }
       ];
       let currentImageIndex = 0;
       // Use cached elements
