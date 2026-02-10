@@ -845,9 +845,9 @@ animation-play-state: paused;
         </div>
 
         <!-- Speakers Grid -->
-        <div id="speakers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 fade-up stagger-1">
+        <div id="speakers-grid" class="flex flex-wrap justify-center gap-6 mb-16 fade-up stagger-1">
 
-          <div class="speaker-card" data-category="keynote"
+          <div class="speaker-card w-full sm:w-1/2 lg:w-1/4" data-category="keynote"
                data-name="Rtn. Muruganandam M"
                data-role="Director"
                data-org="Rotary International"
@@ -869,7 +869,7 @@ animation-play-state: paused;
             </div>
           </div>
 
-          <div class="speaker-card" data-category="keynote"
+          <div class="speaker-card w-full sm:w-1/2 lg:w-1/4" data-category="keynote"
                data-name="Rtn. KP Nagesh"
                data-role="Director"
                data-org="Rotary International"
@@ -891,18 +891,40 @@ animation-play-state: paused;
             </div>
           </div>
 
-          <div class="speaker-card" data-category="general breakout"
-               data-name="Rtn. Rtr. Becky Giblin"
-               data-role="Founding Chair"
-               data-org="Rotaract Oceania"
-               data-bio="Rtn. Rtr. Becky Giblin is the Founding Chair of Rotaract Oceania and a mentor at RZI 2026."
-               data-image="/images/speakers/BeckyGiblin.webp"
+          <div class="speaker-card w-full sm:w-1/2 lg:w-1/4" data-category="keynote"
+               data-name="Rtn. A S Venkatesh"
+               data-role="Trustee"
+               data-org="The Rotary Foundation"
+               data-bio="PRID A S Venkatesh is a mentor at RZI 2026 Chennai."
+               data-image="/images/speakers/asv.webp"
                data-linkedin="#"
                data-twitter="#"
                data-website="#">
             <div class="group relative bg-[#151b2b] border border-white/5 rounded-2xl overflow-hidden hover:border-brand-orange/50 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-orange/10 cursor-pointer flex flex-col h-[320px] speaker-card-inner">
               <div class="absolute inset-0">
-                <img src="/images/speakers/BeckyGiblin.webp" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40" alt="Becky Giblin">
+                <img src="/images/speakers/asv.webp" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40" alt="Rtn. ASV">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#151b2b] via-[#151b2b]/40 to-transparent"></div>
+              </div>
+              <div class="absolute bottom-0 left-0 w-full p-6 transform transition-transform duration-300 group-hover:-translate-y-2">
+                <span class="inline-block px-2.5 py-1 rounded-md bg-brand-orange/10 backdrop-blur-md border border-brand-orange/20 text-[10px] font-bold uppercase tracking-wider text-brand-orange mb-3">Keynote</span>
+                <h3 class="text-xl font-bold text-white leading-tight mb-1">Rtn. A S Venkatesh</h3>
+                <p class="text-sm text-brand-text">Trustee, The Rotary Foundation</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="speaker-card w-full sm:w-1/2 lg:w-1/4" data-category="general breakout"
+               data-name="Rtn. Rtr. Becky Giblin"
+               data-role="Founding Chair"
+               data-org="Rotaract Oceania"
+               data-bio="Rtn. Rtr. Becky Giblin is the Founding Chair of Rotaract Oceania and a mentor at RZI 2026."
+              data-image="/images/speakers/BeckyGiblin2.webp"
+               data-linkedin="#"
+               data-twitter="#"
+               data-website="#">
+            <div class="group relative bg-[#151b2b] border border-white/5 rounded-2xl overflow-hidden hover:border-brand-orange/50 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-orange/10 cursor-pointer flex flex-col h-[320px] speaker-card-inner">
+              <div class="absolute inset-0">
+                <img src="/images/speakers/BeckyGiblin2.webp" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40" alt="Becky Giblin">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#151b2b] via-[#151b2b]/40 to-transparent"></div>
               </div>
               <div class="absolute bottom-0 left-0 w-full p-6 transform transition-transform duration-300 group-hover:-translate-y-2">
@@ -914,7 +936,7 @@ animation-play-state: paused;
             </div>
           </div>
 
-          <div class="speaker-card" data-category="general"
+          <div class="speaker-card w-full sm:w-1/2 lg:w-1/4" data-category="general"
                data-name="Rtn. Vinod Saraogi"
                data-role="District Governor"
                data-org="RI District 3234"
@@ -936,8 +958,8 @@ animation-play-state: paused;
             </div>
           </div>
 
-          <div class="speaker-card" data-category="breakout"
-               data-name="PDG Sridhar J"
+          <div class="speaker-card w-full sm:w-1/2 lg:w-1/4" data-category="breakout"
+               data-name="Rtn. Sridhar J"
                data-role="District Learning Facilitator"
                data-org="RI District 3234"
                data-bio="PDG Sridhar J is District Learning Facilitator for RI District 3234 and a breakout session mentor at RZI 2026."
@@ -952,8 +974,30 @@ animation-play-state: paused;
               </div>
               <div class="absolute bottom-0 left-0 w-full p-6 transform transition-transform duration-300 group-hover:-translate-y-2">
                 <span class="inline-block px-2.5 py-1 rounded-md bg-brand-orange/10 backdrop-blur-md border border-brand-orange/20 text-[10px] font-bold uppercase tracking-wider text-brand-orange mb-3">Breakout</span>
-                <h3 class="text-xl font-bold text-white leading-tight mb-1">PDG Sridhar J</h3>
+                <h3 class="text-xl font-bold text-white leading-tight mb-1">Rtn. Sridhar J</h3>
                 <p class="text-sm text-brand-text">District Learning Facilitator, RI District 3234</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="speaker-card w-full sm:w-1/2 lg:w-1/4" data-category="general"
+               data-name="Rtn. Saravanan N S"
+               data-role="IPDG"
+               data-org="RI District 3234"
+               data-bio="Rtn. Saravanan N S is IPDG of RI District 3234 and a mentor at RZI 2026 Chennai."
+               data-image="/images/speakers/saravanan.webp"
+               data-linkedin="#"
+               data-twitter="#"
+               data-website="#">
+            <div class="group relative bg-[#151b2b] border border-white/5 rounded-2xl overflow-hidden hover:border-brand-orange/50 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-orange/10 cursor-pointer flex flex-col h-[320px] speaker-card-inner">
+              <div class="absolute inset-0">
+                <img src="/images/speakers/saravanan.webp" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40" alt="Rtn. Saravanan">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#151b2b] via-[#151b2b]/40 to-transparent"></div>
+              </div>
+              <div class="absolute bottom-0 left-0 w-full p-6 transform transition-transform duration-300 group-hover:-translate-y-2">
+                <span class="inline-block px-2.5 py-1 rounded-md bg-brand-orange/10 backdrop-blur-md border border-brand-orange/20 text-[10px] font-bold uppercase tracking-wider text-brand-orange mb-3">General</span>
+                <h3 class="text-xl font-bold text-white leading-tight mb-1">Rtn. Saravanan N S</h3>
+                <p class="text-sm text-brand-text">IPDG, RI District 3234</p>
               </div>
             </div>
           </div>
